@@ -1,0 +1,103 @@
+<div class="event-editor">
+  @switch (eventType) {
+    @case ('base') {
+      <app-base-event-form
+        [name]="eventData?.name"
+        [description]="eventData?.description"
+        [location]="eventData?.location"
+        [isShowForm]="isShowForm"
+      >
+        @if (isShowForm) {
+          <ng-container *ngTemplateOutlet="eventFormTemplate"></ng-container>
+        }
+      </app-base-event-form>
+    }
+    @case ('sport') {
+      <app-sport-event-form
+        [name]="eventData?.name"
+        [description]="eventData?.description"
+        [location]="eventData?.location"
+        [numberOfParticipants]="eventData?.numberOfParticipants"
+        [isShowForm]="isShowForm"
+      >
+        @if (isShowForm) {
+          <ng-container *ngTemplateOutlet="eventFormTemplate"></ng-container>
+        }
+      </app-sport-event-form>
+    }
+    @case ('music') {
+      <app-music-event-form
+        [name]="eventData?.name"
+        [description]="eventData?.description"
+        [location]="eventData?.location"
+        [genre]="eventData?.genre"
+        [isShowForm]="isShowForm"
+      >
+        @if (isShowForm) {
+          <ng-container *ngTemplateOutlet="eventFormTemplate"></ng-container>
+        }
+      </app-music-event-form>
+    }
+  }
+
+  <div class="event-editor__buttons">
+    <p-button label="Сохранить изменения" (onClick)="saveChanges()"></p-button>
+
+    @if (isFormNotEmpty) {
+      <p-button
+        [label]="!isShowForm ? 'Перейти в режим редактирования' : 'Перейти в режим просмотра'"
+        (onClick)="showOrHideEventForm()"
+      ></p-button>
+    }
+
+    <p-button
+      label="Перейти к списку событий"
+      (onClick)="backToEventList()"
+    ></p-button>
+  </div>
+</div>
+
+<ng-template #eventFormTemplate>
+  <form class="event-editor__event-form event-form" [formGroup]="eventForm">
+    <div>
+      <div>Название:</div>
+
+      <input pInputText formControlName="name" />
+    </div>
+
+    <div>
+      <div>Описание:</div>
+
+      <input pInputText formControlName="description" />
+    </div>
+
+    <div>
+      <div>Место проведения:</div>
+
+      <input pInputText formControlName="location" />
+    </div>
+
+    @switch (eventType) {
+      @case ('sport') {
+        <div>
+          <div>Количество участников:</div>
+
+          <p-inputnumber
+            inputId="integeronly"
+            formControlName="numberOfParticipants"
+          ></p-inputnumber>
+        </div>
+      }
+      @case ('music') {
+        <div>
+          <div>Жанр музыки:</div>
+
+          <input pInputText formControlName="genre" />
+        </div>
+      }
+    }
+  </form>
+</ng-template>
+
+<p-toast />
+

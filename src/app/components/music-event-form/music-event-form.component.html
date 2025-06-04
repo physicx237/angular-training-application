@@ -1,0 +1,16 @@
+<div class="music-event-form">
+  <div class="music-event-form__title">Музыкальное событие:</div>
+
+  @if (!isShowForm()) {
+    <div class="music-event-form__info info">
+      <div class="info__name">Название: {{ name() }}</div>
+      <div class="info__description">Описание: {{ description() }}</div>
+      <div class="info__location">Место проведения: {{ location() }}</div>
+      <div class="info__genre">Жанр музыки: {{ genre() }}</div>
+    </div>
+  }
+
+  <div class="music-event-form__form">
+    <ng-content></ng-content>
+  </div>
+</div>

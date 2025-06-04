@@ -1,0 +1,9 @@
+.event-editor {
+  .event-form,
+  &,
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}

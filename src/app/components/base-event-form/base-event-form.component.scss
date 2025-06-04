@@ -1,0 +1,11 @@
+.base-event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+}

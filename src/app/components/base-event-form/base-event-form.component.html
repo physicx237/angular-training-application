@@ -1,0 +1,13 @@
+<div class="base-event-form">
+  <div class="base-event-form__title">Стандартное событие:</div>
+
+  @if (!isShowForm()) {
+    <div class="base-event-form__info info">
+      <div class="info__name">Название: {{ name() }}</div>
+      <div class="info__description">Описание: {{ description() }}</div>
+      <div class="info__location">Место проведения: {{ location() }}</div>
+    </div>
+  }
+
+  <ng-content></ng-content>
+</div>
